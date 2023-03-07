@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+}
+
+.header{
+    height: 60px;
+    background: rgb(63, 87, 114);
+    text-align: center;
+    margin: 5px;
+    border-radius: 10px;
+}
+.header h1{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    padding-top: 8px;
+}
+.control, .monitor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+.values{
+    margin: 40px;
+    background-color: rgba(14, 13, 13, 0.705)
+    border-radius: 40px;
+    width: 250px;
+}
+.values h1{
+    text-align: center;
+    padding: 40px;
+}
+.values p{
+    text-align: center;
+    font-size: 35px;
+    padding: 20px;
+}
