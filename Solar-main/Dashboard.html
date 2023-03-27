@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Dashboard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="assets/css/vendor.min.css" rel="stylesheet" />
+		<link href="assets/css/app.min.css" rel="stylesheet" />
+        <style>
+            .app-content {
+                margin-left: auto;
+            }
+            .brand-logo h3 {
+                margin-left: 15px;
+            }
+            .app-header .brand {
+                width: 20rem;
+            }
+        </style>
+
+    </head>
+	<body>
+		<div id="app" class="app">
+			<div id="header" class="app-header">
+				<div class="brand">
+					<a href="#" class="brand-logo">
+                        <h3>PV Performance Testing</h3>
+					</a>
+				</div>
+				<div class="menu">
+					<form class="menu-search" method="POST" name="header_search_form">
+						<div class="menu-search-icon"><i class="fa fa-search"></i></div>
+						<div class="menu-search-input">
+							<input type="text" class="form-control" placeholder="Search menu..." />
+						</div>
+					</form>
+					<div class="menu-item dropdown">
+						<a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
+							<div class="menu-icon"><i class="fa fa-bell nav-icon"></i></div>
+							<div class="menu-label">*</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-notification">
+							<h6 class="dropdown-header text-dark mb-1">Notifications</h6>
+							
+							<a href="#" class="dropdown-notification-item">
+								<div class="dropdown-notification-icon">
+									<i class="far temperature-arrow-up fa-lg fa-fw text-muted"></i>
+								</div>
+								<div class="dropdown-notification-info">
+									<div class="title">Performance alert</div>
+									<div class="time">Shading occurs</div>
+								</div>
+								<div class="dropdown-notification-arrow">
+									<i class="fa fa-chevron-right"></i>
+								</div>
+							</a>
+							<div class="p-2 text-center mb-n1">
+								<a href="#" class="text-dark text-opacity-50 text-decoration-none">See all</a>
+							</div>
+						</div>
+					</div>
+					<div class="menu-item dropdown">
+						<a href="#" data-bs-toggle="dropdown" data-display="static" class="menu-link">
+							<div class="menu-img online">
+								<img src="assets/img/man.png" alt="" class="ms-100 mh-100 rounded-circle" />
+							</div>
+							<div class="menu-text">admin@gmail.com</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right me-lg-3">
+							<a class="dropdown-item d-flex align-items-center" href="profile.html">Edit Profile <i class="fa fa-user-circle fa-fw ms-auto text-dark text-opacity-50"></i></a>
+							<a class="dropdown-item d-flex align-items-center" href="settings.html">Setting <i class="fa fa-wrench fa-fw ms-auto text-dark text-opacity-50"></i></a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item d-flex align-items-center" href="page_login.html">Log Out <i class="fa fa-toggle-off fa-fw ms-auto text-dark text-opacity-50"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="content" class="app-content">
+				<h1 class="page-header mb-3">
+					Hi, VENKATESH. <small>Here's what's happening today.</small>
+				</h1>
+				
+				
+				<div class="row">
+					<div class="col-xl-12 mb-6">
+						<div class="card">
+							<ul class="nav nav-tabs pt-3 ps-4 pe-4">
+								<li class="nav-item me-1"><a href="#pv1" class="nav-link active" data-bs-toggle="tab">PV1</a></li>
+								<li class="nav-item me-1"><a href="#pv2" class="nav-link" data-bs-toggle="tab">PV2</a></li>
+							</ul>
+							<div class="tab-content p-4">
+								<div class="tab-pane fade show active" id="pv1">
+									<div class="row">
+										<div class="col-xl-4 mb-6">
+											<a href="#" class="card bg-gradient-custom-orange border-0 text-decoration-none">
+												<div class="card-body d-flex align-items-center text-white">
+													<div class="flex-fill">
+														<div class="mb-1">Voltage</div>
+														<h2>25 V</h2>
+													</div>
+												</div>
+											  </a>
+										</div>
+										<div class="col-xl-4 mb-6">
+											<a href="#" class="card bg-gradient-custom-indigo border-0 text-decoration-none">
+												<div class="card-body d-flex align-items-center text-white">
+													<div class="flex-fill">
+														<div class="mb-1">Current</div>
+														<h2>2 A</h2>
+													</div>
+												</div>
+											  </a>
+										</div>
+										<div class="col-xl-4 mb-6">
+											<a href="#" class="card bg-gradient-custom-teal border-0 text-decoration-none">
+												<div class="card-body d-flex align-items-center text-white">
+													<div class="flex-fill">
+														<div class="mb-1">Power</div>
+														<h2>100 W</h2>
+													</div>
+												</div>
+											  </a>
+										</div>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="pv2">
+									<div class="row">
+										<div class="col-xl-4 mb-6">
+											<a href="#" class="card bg-gradient-custom-orange border-0 text-decoration-none">
+												<div class="card-body d-flex align-items-center text-white">
+													<div class="flex-fill">
+														<div class="mb-1">Voltage</div>
+														<h2>25 V</h2>
+													</div>
+												</div>
+											  </a>
+										</div>
+										<div class="col-xl-4 mb-6">
+											<a href="#" class="card bg-gradient-custom-indigo border-0 text-decoration-none">
+												<div class="card-body d-flex align-items-center text-white">
+													<div class="flex-fill">
+														<div class="mb-1">Current</div>
+														<h2>2 A</h2>
+													</div>
+												</div>
+											  </a>
+										</div>
+										<div class="col-xl-4 mb-6">
+											<a href="#" class="card bg-gradient-custom-teal border-0 text-decoration-none">
+												<div class="card-body d-flex align-items-center text-white">
+													<div class="flex-fill">
+														<div class="mb-1">Power</div>
+														<h2>100 W</h2>
+													</div>
+												</div>
+											  </a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-12 mt-20px mb-6">
+						<div class="card">
+							<div class="card-body">
+							
+								<div class="d-flex align-items-center mb-2 h3">
+									<div class="flex-fill fw-600 fs-16px">Returning customer rate</div>
+								</div>
+
+								<div>
+									<div class="chart mb-2" style="height: 190px">
+										<canvas id="chart3" class="w-100" height="190"></canvas>
+									</div>
+									<div class="d-flex align-items-center">
+										<i class="fa fa-square text-indigo me-2 ms-auto"></i>
+										<span class="fs-12px me-4">PV 1</span>
+										<i class="fa fa-square text-teal me-2"></i>
+										<span class="fs-12px">PV 2</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+        <script src="assets/js/vendor.min.js" type="text/javascript"></script>
+		<script src="assets/js/app.min.js" type="text/javascript"></script>
+		<script src="assets/js/apexcharts.min.js" type="text/javascript"></script>
+		<script src="assets/js/chart.umd.js" type="text/javascript"></script>
+		<script src="assets/js/chart-data.js" type="text/javascript"></script>
+		<script src="assets/js/moment.min.js" type="text/javascript"></script>
+    </body>
+</html>
+<script>
+
+function handleChart(udata, ulabel, uid) {
+    $(uid).empty();
+    Apex={
+        grid:{borderColor:'rgba('+app.color.componentColorRgb+', .15)'},
+        title:{style:{color:app.color.componentColor}},
+        legend:{labels:{colors:app.color.componentColor}},
+        xaxis:{
+            axisBorder:{
+                show:true,
+                color:'rgba('+app.color.componentColorRgb+', .25)',
+                height:1,width:'100%',
+                offsetX:0,offsetY:-1
+            },
+            axisTicks:{
+                show:true,
+                borderType:'solid',
+                color:'rgba('+app.color.componentColorRgb+', .25)',
+                height:6,offsetX:0,offsetY:0
+            },
+            labels:{
+                style:{
+                    colors:app.color.componentColor,
+                    fontSize:app.font.size,
+                    fontFamily:app.font.family,
+                    fontWeight:400,
+                    cssClass:'apexcharts-xaxis-label',
+                }
+            }
+        },
+        yaxis:{
+            labels:{
+                style:{
+                    colors:app.color.componentColor,
+                    fontSize:app.font.size,
+                    fontFamily:app.font.family,
+                    fontWeight:400,
+                    cssClass:'apexcharts-xaxis-label'
+                }
+            }
+        }
+    };
+    var options={
+        series:[{data:udata}],
+        labels:ulabel,
+        colors:[app.color.blue],
+        chart:{height:256,type:'line',toolbar:{show:false}},
+        dataLabels:{enabled:false},
+        stroke:{curve:'straight'},
+        grid:{padding:{right:30,left:20}},
+        xaxis:{type:'datetime'}
+    };
+    var chart=new ApexCharts(document.querySelector(uid),options);
+    chart.render();
+};
+$(document).ready(function(){
+    handleChart([0, 10, 30, 50, 50, 60, 70, 100, 70, 30, 0, 2, 50, 70, 20],['1:00 12 Mar 2023','2:00 12 Mar 2023','3:00 12 Mar 2023','4:00 12 Mar 2023','5:00 12 Mar 2023','6:00 12 Mar 2023','7:00 12 Mar 2023','8:00 12 Mar 2023','9:00 12 Mar 2023','10:00 12 Mar 2023','11:00 12 Mar 2023','12:00 12 Mar 2023','13:00 12 Mar 2023','14:00 12 Mar 2023','15:00 12 Mar 2023'],'#chart');
+    $(document).on('theme-change',function(){
+        handleChart([0, 10, 30, 50, 50, 60, 70, 100, 70, 30, 0, 2, 50, 70, 20],['1:00 12 Mar 2023','2:00 12 Mar 2023','3:00 12 Mar 2023','4:00 12 Mar 2023','5:00 12 Mar 2023','6:00 12 Mar 2023','7:00 12 Mar 2023','8:00 12 Mar 2023','9:00 12 Mar 2023','10:00 12 Mar 2023','11:00 12 Mar 2023','12:00 12 Mar 2023','13:00 12 Mar 2023','14:00 12 Mar 2023','15:00 12 Mar 2023'],'#chart');
+    });
+    handleChart([0, 10, 30, 50, 50, 60, 70, 100, 70, 30, 0, 2, 50, 70, 20],['1:00 12 Mar 2023','2:00 12 Mar 2023','3:00 12 Mar 2023','4:00 12 Mar 2023','5:00 12 Mar 2023','6:00 12 Mar 2023','7:00 12 Mar 2023','8:00 12 Mar 2023','9:00 12 Mar 2023','10:00 12 Mar 2023','11:00 12 Mar 2023','12:00 12 Mar 2023','13:00 12 Mar 2023','14:00 12 Mar 2023','15:00 12 Mar 2023'],'#Humidchart');
+    $(document).on('theme-change',function(){
+        handleChart([0, 10, 30, 50, 50, 60, 70, 100, 70, 30, 0, 2, 50, 70, 20],['1:00 12 Mar 2023','2:00 12 Mar 2023','3:00 12 Mar 2023','4:00 12 Mar 2023','5:00 12 Mar 2023','6:00 12 Mar 2023','7:00 12 Mar 2023','8:00 12 Mar 2023','9:00 12 Mar 2023','10:00 12 Mar 2023','11:00 12 Mar 2023','12:00 12 Mar 2023','13:00 12 Mar 2023','14:00 12 Mar 2023','15:00 12 Mar 2023'],'#Humidchart');
+    });
+
+});
+</script>
