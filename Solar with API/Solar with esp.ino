@@ -1,79 +1,132 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
-#include <WiFiClient.h>
-#include <DHT.h>
-#include <Wire.h>
-const char *ssid =  "Venkatesh's Galaxy M21";     // Enter your WiFi Name
-const char *pass =  "qj9bn71j"; // Enter your WiFi Password
+#include <WiFi.h>
+#include <HTTPClient.h>
+const char* ssid = "";
+const char* password = "";
+const char* apiEndpoint = "";
+// Define the pin numbers for the voltage and current sensors
+const int voltagePin = 34;
+const int currentPin = 35;
 
+// Define the calibration values for the current sensor
+const float currentZero = 2500;   // ACS712 output voltage at zero current (in millivolts)
+const float currentSensitivity = 100;   // ACS712 sensitivity (in millivolts per ampere)
 
-// Define voltage sensor analog input
-#define SIGNAL_PIN A0
-WiFiClient client;
+// Define the number of readings to average for the current sensor
+const int numReadings = 10;
 
-float adc_voltage = 0.0;
-float in_voltage;
-//voltage divider bias
-float R1 = 30000.0;
-float R2 = 7500.0;
-//reference voltage of arduino or esp
-float ref_voltage = 5;
-int adc_value = 0;
-//ACS712 current sensor
-//const int sensorIn = A5;      // pin where the OUT pin from sensor is connected on Arduino
-//int mVperAmp = 185;           // this the 5A version of the ACS712 -use 100 for 20A Module and 66 for 30A Module
-//int Watt = 0;
-//double Voltage = 0;
-//double VRMS = 0;
-//double AmpsRMS = 0;//
 void setup() {
-  // Initialize serial and wait for port to open:
+  // Start serial communication
   Serial.begin(9600);
-  // This delay gives the chance to wait for a Serial Monitor without blocking if none is found
-  delay(1500);
+
+  // Connect to Wi-Fi network
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
   }
+
+  Serial.println("Connected to WiFi");
+}
+
 void loop() {
-  //voltage sensor
-  adc_value = analogRead(SIGNAL_PIN);
-  adc_voltage  = (adc_value * ref_voltage) / 1023.0;
-  in_voltage = adc_voltage / (R2 / (R1 + R2)) ;
-  Serial.print("Input Voltage = ");
-  Serial.print(in_voltage, 2);
-  Serial.print(" V |");
-
-  //acs712
-  //Voltage = getVPP();
-  //VRMS = (Voltage / 2.0) * 0.707; //root 2 is 0.707
-  //AmpsRMS = ((VRMS * 1000) / mVperAmp) - 0.3;
-  //Serial.print("Current = ");
-  //Serial.print(AmpsRMS, 2);
-  //Serial.print(" A |");
-
-}
-
-float getVPP()
-{
-  float result;
-  int readValue;                // value read from the sensor
-  int maxValue = 0;             // store max value here
-  int minValue = 1023;          // store min value here ESP8266 ADC resolution
-
-  
-
-  // Subtract min from max
-  result = ((maxValue - minValue) * 5) / 1023.0; //ESP8266 ADC resolution 1023
-
-  return result;
-if (WiFi.status() == WL_CONNECTED) {  //Check WiFi connection status
-    HTTPClient http;                    //Declare an object of class HTTPClient
-    String url = "http://venkatesh029.000webhostapp.com/api/update.php?temp=" + String(in_voltage); //+ "&hum=" + String(h);
-    Serial.println(url);
-    http.begin(client, url);          //Specify request destination
-    int httpCode = http.GET();            //Send the request
-    if (httpCode > 0) {                   //Check the returning code
-      String payload = http.getString();  //Get the request response payload
-      Serial.println(payload);            //Print the response payload
-    }
-    http.end();  //Close connection
+  // Read the voltage and current sensor values
+  float voltage = analogRead(voltagePin) * 0.0049;  // Convert analog reading to voltage (in volts)
+  float current = 0;
+  for (int i = 0; i < numReadings; i++) {
+    float rawCurrent = analogRead(currentPin) * 3.3 / 4096.0 * 1000.0; // Convert analog reading to millivolts
+    current += -((rawCurrent - currentZero) / currentSensitivity);  // Convert millivolts to current (in amperes)
   }
+  current /= numReadings;
+
+  // Print the sensor readings
+  Serial.print("Voltage: ");
+  Serial.print(voltage);
+  Serial.print("V, Current: ");
+  Serial.print(current);
+  Serial.println("A");
+
+  // Send the sensor readings to the API
+  WiFiClient client;
+  String apiRequest = apiEndpoint;
+  apiRequest += "?pv=1&voltage=";
+  apiRequest += voltage;
+  apiRequest += "&current=";
+  apiRequest += current;
+
+  HTTPClient http;
+  http.begin(client, apiRequest);
+  int httpResponseCode = http.GET();
+  if (httpResponseCode == HTTP_CODE_OK) {
+    String response = http.getString();
+    Serial.println("API response: " + response);
+  }
+  else {
+    Serial.println("API request failed");
+  }
+  http.end();
+
+  // Wait for 1 second before taking the next readings
+  delay(1000);
 }
+
+
+
+
+//#include <WiFi.h>
+//#include <HTTPClient.h>
+//const char* ssid = "";
+//const char* password = "";
+//const char* apiEndpoint = "";
+//const int voltagePin = 34;
+//const int currentPin = 35;
+// Define the calibration values for the current sensor
+//const float currentOffset = 2.5;  // Zero current output voltage (in volts)
+//const float currentSensitivity = 0.185;  // Sensitivity of the sensor (in volts per amp)
+// Define the number of readings to average for the current sensor
+//const int numReadings = 10;
+//void setup() {
+  // Start serial communication
+  //Serial.begin(9600);
+  // Connect to Wi-Fi network
+  //WiFi.begin(ssid, password);
+  //while (WiFi.status() != WL_CONNECTED) {
+    //delay(1000);
+    //Serial.println("Connecting to WiFi...");
+  //}
+  //Serial.println("Connected to WiFi");
+//}
+//void loop() {
+  // Read the voltage and current sensor values
+  //float voltage = analogRead(voltagePin) * 0.0049;  // Convert analog reading to voltage (in volts)
+  //float current = 0;
+  //for (int i = 0; i < numReadings; i++) {
+    //current += (analogRead(currentPin) * 0.0049 - currentOffset) / currentSensitivity;  // Convert analog reading to current (in amps)
+  //}
+  //current /= numReadings;
+
+  // Print the sensor readings
+  //Serial.print("Voltage: ");
+  //Serial.print(voltage);
+  //Serial.print("V, Current: ");
+  //Serial.print(current);
+  //Serial.println("A");
+
+  // Send the sensor readings to the API
+  //WiFiClient client;
+//String apiURL = "pv=1&voltage=" + String(voltage) + "&current=" + String(current);
+
+  //HTTPClient http;
+  //http.begin(client, apiURL);
+  //int httpResponseCode = http.GET();
+  //if (httpResponseCode == HTTP_CODE_OK) {
+    //String response = http.getString();
+    //Serial.println("API response: ");
+  //}
+  //else {
+    //Serial.println("API request failed");
+  //}
+  //http.end();
+
+  // Wait for 1 second before taking the next readings
+  //delay(1000);
+//}
